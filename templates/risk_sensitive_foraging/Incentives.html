@@ -1,0 +1,141 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load otree static %}
+{% load i18n %}
+
+{% block title %}
+    <h1>Remuneration</h1>
+{% endblock %}
+
+
+{% block content %}
+
+  <p>
+  {% blocktrans trimmed %}
+  After the survey you receive
+  {% endblocktrans %}
+  {{ participation_fee|c }}. On top of this you receive a <b>bonus payment</b> given your choices.
+  </p>
+
+  <p>
+  {% blocktrans trimmed %}
+   We will randomly select five of the choice blocks. For each of the selected blocks in which you reach the point target you get {% endblocktrans %}
+  <b>+&nbsp;{{ real_world_currency_per_success|c }}</b>
+  {% blocktrans trimmed %}
+  for reaching the target, plus {% endblocktrans %}
+  <b>+&nbsp;{{ real_world_currency_per_point|c }} </b>
+  {% blocktrans trimmed %}
+  for each point above the target. For the selected blocks in which you do not reach the point target, the bonus is 0.
+  {% endblocktrans %}
+  </p>
+
+  <p class = 'example'>
+  {% blocktrans trimmed %}
+  If the target is 8 points and you collected 12 points, your bonus for this block equals {% endblocktrans %} {{ 1.40|c }}
+  {% blocktrans trimmed %}, given that this block belongs to the five selected blocks.
+    That is,
+  {% endblocktrans %}
+    {{ real_world_currency_per_success|c }}
+   {% blocktrans trimmed %} for reaching the goal plus {% endblocktrans %} 
+   {{ real_world_currency_per_point|c }} x 4
+   {% blocktrans trimmed %}
+   because you exceeded the goal by 4.
+   {% endblocktrans %}
+  </p>
+
+
+
+  <h3>
+  {% blocktrans trimmed %}Please type in the correct answer to the following questions:{% endblocktrans %}
+  </h3>
+
+  <form id = "check">
+    <fieldset class = "rsft-form">
+    <legend>  {% blocktrans trimmed %} What is your bonus payment for a block with...
+  {% endblocktrans %}</legend>
+    <p>
+      <label for="q1">  {% blocktrans trimmed %}...a goal of 5 points, if you collected 4 points? {% endblocktrans %}</label>
+      <input id="q1" name="q1" min="0" max="10" type="number" required placeholder={% blocktrans trimmed %}"Number"{% endblocktrans %} onfocus="if (this.placeholder=={% blocktrans trimmed %}"Number"{% endblocktrans %}) this.placeholder='';">
+    </p>
+    <p>
+      <label for="q2">{% blocktrans trimmed %}...a goal of 5 points, if you collected 5 points? {% endblocktrans %}</label>
+      <input id="q2" name="q2" min="0" max="10" type="number" required placeholder={% blocktrans trimmed %}"Number"{% endblocktrans %} onfocus="if (this.placeholder=={% blocktrans trimmed %}"Number"{% endblocktrans %}) this.placeholder='';">
+    </p>
+    <p>
+      <label for="q3">{% blocktrans trimmed %}...a goal of 5 points, if you collected 7 points? {% endblocktrans %}</label>
+      <input id="q3" name="q3" min="1" max="10" step="0.01" pattern="[0-9]+([\.,][0-9]+)?" required placeholder={% blocktrans trimmed %}"Number"{% endblocktrans %} onfocus="if (this.placeholder=={% blocktrans trimmed %}"Number"{% endblocktrans %}) this.placeholder='';">
+    </p>
+  </fieldset>
+
+
+  <div class = "right">
+    <button id = "submitcheck" class = "btn" type = "button" >
+      Check
+    </button>
+    <span style = "display: none; visibility: hidden;">{% next_button %}
+    </span>
+  </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+
+  <script>
+    var answers   = ["0",   "1", "1.2"];
+    var questions = ["q1", "q2", "q3"];
+
+    function check_answers(i) {
+      var qid = "#" + questions[i];
+      var value = $(qid).val().toLowerCase();
+
+      if (value == answers[i]) {
+        $(qid).parent('p').css({"color": "#9CBA7F"});       
+        $(qid).css("border", "0px");
+      } else {
+        $(qid).parent('p').css("color", "red");       
+        $(qid).css("border", ".5px solid red");
+      }
+    };
+
+    $("#submitcheck").click( function() {
+
+      var arr = $('.rsft-form :input').map(function () {
+        return this.value.toLowerCase();
+      }).get();
+      
+      var alert_ok = {% blocktrans trimmed %}"Correct. Let's continue by clicking OK."{% endblocktrans %}
+      var alert_notok = {% blocktrans trimmed %}"Not completely. Please check and answer the questions marked in red again."{% endblocktrans %}
+
+
+      /*.map(Number) transforms the values to numbers*/
+      if ( arraysEqual(arr.map(Number), answers.map(Number)) ) {
+        alert(alert_ok);
+        $('.otree-btn-next').click();
+      } else {
+        alert(alert_notok);
+
+      for (var i = 0; i < arr.length; ++i) {
+        check_answers(i);
+      }
+    }
+
+    });
+
+    function arraysEqual(a, b) {
+      if (a === b) return true;
+      if (a == null || b == null) return false;
+      if (a.length != b.length) return false;
+
+      for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+      }
+      return true;
+    };
+
+  </script>
+{% endblock %}
+
+
+

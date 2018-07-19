@@ -1,0 +1,9 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+{% load i18n %}
+
+{% block app_scripts %}
+  <script src="{% static 'risk_sensitive_foraging/drawAction.js' %}"></script>
+  <script src="{% static 'risk_sensitive_foraging/drawTrial.js' %}"></script>
+  <script src="{% static 'risk_sensitive_foraging/drawEarnings.js' %}"></script>
+{% endblock %}

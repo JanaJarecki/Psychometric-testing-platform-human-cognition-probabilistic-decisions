@@ -1,0 +1,77 @@
+{% extends "risk_sensitive_foraging/Page.html" %}
+{% load otree static %}
+{% load i18n %}
+
+{% block title %}
+    <span class = "goal parent lightorange">
+    <p class = "center">
+      {% blocktrans trimmed %}
+      Target reached<br> {{ successes }}  of {{ num_blocks }} x.
+      {% endblocktrans %}
+    </p>
+  </span>
+{% endblock %}
+
+
+
+{% block content %}
+  <div class = "row1 parent center-children">
+    <div class="chart-trial center-me-h" id = "chart-trial">
+    </div>
+  </div>
+
+  <div class = "row parent center-children">
+    <div class = "chart-earnings center-me-v" id = "chart-earnings">
+    </div>
+  </div>
+
+  <div class = "row parent flex">
+      
+    {% if player.choice == 0 %}
+      <button disabled class="option rsft-btn-choices rsft-btn-chosen">
+        <div class="center-me-hv">
+          +&puncsp;{{player.outcome}}
+        </div>
+      </button>
+      {% else %}
+        <button disabled class="option rsft-btn-choices">
+          <span class = "rsft-span-choices">
+            <div class="center-me-hv">
+            </div>
+          </span>
+        </button>
+
+      {% endif %}
+      
+      {% if player.choice == 1 %}
+      <button disabled class="option rsft-btn-choices rsft-btn-chosen">
+        <div class="center-me-hv">       
+          +&puncsp;{{player.outcome}}
+        </div>
+      </button>
+      {% else %}
+        <button disabled class="option rsft-btn-choices">
+          <span class = "rsft-span-choices">
+            <div class="center-me-hv">         
+            </div>
+            </span>
+        </button>
+      {% endif %}
+
+  </div>
+
+   <div class = "right">
+    {% next_button %}
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    drawTrial('chart-trial', true, [{{ chart_trial|json }}], {{ Constants.trial_label|json }});
+    drawEarnings('chart-earnings', {{ state|json }}, {{ budget|json }}, {{ max_less_state|json }}, {{ max_earning|json }}, true, true, {{ Constants.point_label|json }});
+    /*drawAction('option1', {{ LV|json }}, {{ LP|json }}, true, true, {{ Constants.point_label|json }});
+    drawAction('option2', {{ HV|json }}, {{ HP|json }}, true, true, {{ Constants.point_label|json }});*/ 
+  </script>
+{% endblock %}
+

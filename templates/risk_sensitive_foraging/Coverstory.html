@@ -1,0 +1,65 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% load i18n %}
+
+{% block title %}
+    <h1>
+    {% blocktrans trimmed %}
+    Ihre Aufgabe
+    {% endblocktrans %}</h1>
+{% endblock %}
+
+
+{% block content %}
+  <p>
+  {% blocktrans trimmed %}
+  Your task in this study is to reach a <b>point target</b> within five choices. For example you have 0 points and need to reach a target of 9 points.
+  {% endblocktrans %}  
+  </p>
+
+  <div class = 'flex'><img src='{% static "risk_sensitive_foraging/example_earnings.png" %}'/ width = '400px'> <img src='{% static "risk_sensitive_foraging/example_time.png" %}'/ width = "200px">
+  </div>
+
+<!-- 0,2,0.1,0.9,0,4,0.5,0.5,9
+1,3,0.1,0.9,1,5,0.1,0.9,12
+1,2,0.5,0.5,0,3,0.5,0.5,11 -->
+
+  <p>
+  {% blocktrans trimmed %}
+  Each choice involves selecting one of two options that add points to your point counter. You have five choices to reach the target. The options provide you with points, but they vary in the points they provide. The first option, Option A, could for instance give you either +2&nbsp;points in 30% of the cases, or +1 point in 70% of the cases: {% endblocktrans %}  
+  </p>
+  <div class = "flex">
+    <img src='{% static "risk_sensitive_foraging/example_action.png" %}'/ width = '30%'>
+    <img src='{% static "risk_sensitive_foraging/example_action2.png" %}'/ width = '30%'>
+   </div>
+
+   {% blocktrans trimmed %}
+    Opton B gives +4 points in 50% of the cases, and in 50% of the cases it gives 0 points. We will tell you exactly how much the options vary in terms of the points they offer.
+  {% endblocktrans %}  
+  </p>
+
+  <p>
+  {% blocktrans trimmed %}
+  After you selected one option you see how many points it provided. If, in the example above, you chose Option B and it gave +4 points, these points are added to your point counter:
+  {% endblocktrans %}  
+  
+  </p>
+
+  <img class = "center " src='{% static "risk_sensitive_foraging/example_earnings_added.png" %}'/ width = "400px">
+
+  {% blocktrans trimmed %}
+  <p>
+  What matters is if or if not you have reached the point goal after five decisions. After the fifth decision a new block starts: Your point counter is reset to 0, and you receive another point target and another set of options. The new block starts independently of if or if not you reached the target in the previous block. The options may repeat itselfes or they may differ from the  last block. The new block is like a "new life": you have the chance to reach the point target again.
+  </p>
+  {% endblocktrans %}
+
+  
+
+
+
+<div class = "right">
+    {% next_button %}
+  </div>
+
+{% endblock %}
+

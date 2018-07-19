@@ -1,0 +1,82 @@
+{% extends "risk_sensitive_foraging/Page.html" %}
+{% load otree static %}
+{% load i18n %}
+
+{% block title %}
+    <span class = "goal parent lightgrey">
+    <p class = "center">{% blocktrans trimmed %}
+      Target reached<br> {{ successes }}  of {{ num_blocks }} x.
+      {% endblocktrans %}</p>
+  </span>
+  <h1>{% blocktrans trimmed %}
+    New Block
+  {% endblocktrans %}</h1>
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div>
+  <p>
+  {% if self.player.block > 1 %}
+    {% if currentstate >= player.budget %} 
+    {% blocktrans trimmed %}
+        You <i>reached</i> the goal in the last round.
+    {% endblocktrans %}
+
+    {% else %}
+    {% blocktrans trimmed %}
+        You did <i>not</i> reach the goal in the last round.
+    {% endblocktrans %}
+    {% endif %}
+    {% blocktrans trimmed %}
+       Continue with a new round (round
+    {% endblocktrans %}
+    {{ currentblock }}).
+  {% endif %}
+  </p>
+  
+  <p>
+    {% blocktrans trimmed %}
+    Target:
+    {% endblocktrans %}
+  </p>
+
+  <div class = "center">
+    <p>
+    {% blocktrans trimmed %}
+      Reach <span class = "orange" style = "font-size: 3rem; font-weight: 300;"><b>{{ budget }}</b></span> points in {% endblocktrans %}
+      {{ Constants.num_trials }} {% blocktrans trimmed %} decisions
+    {% endblocktrans %}
+    </p>
+  </div>
+
+  <p><span class="trn">
+    {% blocktrans trimmed %}
+    Options:
+    {% endblocktrans %}
+  </span></p>
+
+  </div>
+  <div class = "flex row">
+    <div class = "option orange-border" id = "option1">
+    </div>
+    <div class = "option orange-border" id = "option2">
+    </div>
+  </div>
+
+
+  <div class = "right">
+    {% next_button %}
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  drawAction('option1', {{ x1|json }}, {{ p1|json }}, true, true, {{ Constants.point_label|json }}, {{ Constants.action_label|json }} +" A");
+  drawAction('option2', {{ x2|json }}, {{ p2|json }}, true, true, {{ Constants.point_label|json }}, {{ Constants.action_label|json }} + " B");
+
+</script>
+{% endblock %}
