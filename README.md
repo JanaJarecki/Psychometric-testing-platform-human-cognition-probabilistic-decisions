@@ -1,5 +1,7 @@
-# risk_sensitive_foraging
-Otree code for risk sensitive foraging taskz
+# Study Software - Risky Choice Task with Goals
+*Also known as risk-sensitive foraging task.*
+
+This project contains production code for a behavioral choice study task on cognition in probabilistic situations (aka decisions under risk).
 
 # Authors
 Jana B. Jarecki
