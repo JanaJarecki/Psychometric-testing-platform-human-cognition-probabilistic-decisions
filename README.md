@@ -1,7 +1,7 @@
 # Psychometric Testing Platform - Risk Cognition with Goals
 *Also known as risk-sensitive foraging task.*
 
-This project contains production code for a behavioral choice study task on cognition in probabilistic situations (aka decisions under risk).
+This project contains a production code for a web-based digital behavioral choice paradigm to test human cognition in probabilistic situations (aka decisions under risk).
 
 # Authors
 Jana B. Jarecki
@@ -14,3 +14,8 @@ Methodology: uses object-oriented python objects to implement a behavioral choic
 Designed: python to interface with the behavioral-science toolbox otree.
 
 Measures: behavioral choices as proxy for cognitive processes.
+
+# Contents
+* _pages.py_ the sequence of pages in the experiment, complying with the pages in otree (https://otree.readthedocs.io/en/latest/pages.html)
+* * _models.py_ object-oriented file for models complying with models in otree (https://otree.readthedocs.io/en/latest/models.html)
+
