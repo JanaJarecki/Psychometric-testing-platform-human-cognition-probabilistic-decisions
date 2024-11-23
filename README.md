@@ -1,4 +1,4 @@
-# Psychometric Testing Platform - Risk Cognition with Goals
+# Psychometric Testing Platform - Human Cognition on Probabilistic Decisions
 *Also known as risk-sensitive foraging task.*
 
 This project contains a production code for a web-based digital behavioral choice paradigm to test human cognition in probabilistic situations (aka decisions under risk).
