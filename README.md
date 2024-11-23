@@ -17,5 +17,5 @@ Measures: behavioral choices as proxy for cognitive processes.
 
 # Contents
 * _pages.py_ the sequence of pages in the experiment, complying with the pages in otree (https://otree.readthedocs.io/en/latest/pages.html)
-* * _models.py_ object-oriented file for models complying with models in otree (https://otree.readthedocs.io/en/latest/models.html)
+* _models.py_ object-oriented file for models complying with models in otree (https://otree.readthedocs.io/en/latest/models.html)
 
