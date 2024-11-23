@@ -1,7 +1,7 @@
 # Psychometric Testing Platform - Human Cognition on Probabilistic Decisions
 *Also known as risk-sensitive foraging task.*
 
-This project contains a production code for a web-based digital behavioral choice paradigm to test human cognition in probabilistic situations (aka decisions under risk).
+This project contains a production code for a web-based digital behavioral choice paradigm to test human cognition and cognitice performance in probabilistic situations (also known as decisions under risk). The code integrates with the behavioral economic web plattform otree, but extends otree's functionality to form a full psychometric experimental platform including adaptive designs and randomizations.
 
 # Authors
 Jana B. Jarecki
