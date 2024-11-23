@@ -1,4 +1,4 @@
-# Study Software - Risky Choice Task with Goals
+# Psychometric Testing Platform - Risk Cognition with Goals
 *Also known as risk-sensitive foraging task.*
 
 This project contains production code for a behavioral choice study task on cognition in probabilistic situations (aka decisions under risk).
